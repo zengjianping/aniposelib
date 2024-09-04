@@ -1012,7 +1012,8 @@ class CameraGroup:
                      scale_smooth=4,
                      scale_length=2, scale_length_weak=0.5,
                      reproj_error_threshold=15, reproj_loss='soft_l1',
-                     n_deriv_smooth=1, scores=None, verbose=False):
+                     n_deriv_smooth=1, scores=None, verbose=False,
+                     optim_method='trf'):
         """
         Take in an array of 2D points of shape CxNxJx2,
         an array of 3D points of shape NxJx3,
@@ -1060,6 +1061,7 @@ class CameraGroup:
                                       x0=x0, jac_sparsity=jac,
                                       loss='linear',
                                       ftol=1e-3,
+                                      method=optim_method,
                                       verbose=2*verbose,
                                       args=(points,
                                             constraints,
